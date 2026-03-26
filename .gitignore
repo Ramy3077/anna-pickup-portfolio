@@ -29,3 +29,6 @@ pnpm-debug.log*
 # Package manager lock files (keep package-lock.json but ignore others)
 yarn.lock
 pnpm-lock.yaml
+
+# Favicon source
+favicon_io (2)/
