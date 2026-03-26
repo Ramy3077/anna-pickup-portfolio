@@ -14,14 +14,14 @@ export function Footer() {
 
           <div className="flex items-center gap-6">
             <a 
-              href="mailto:anna.pickup@example.com"
+              href="mailto:annapickup@live.co.uk"
               className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors"
             >
               <Mail className="w-5 h-5" />
               <span className="hidden sm:inline">Email</span>
             </a>
             <a 
-              href="https://linkedin.com/in/annapickup" 
+              href="https://www.linkedin.com/in/anna-pickup-02b0a725a/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors"

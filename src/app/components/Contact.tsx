@@ -13,20 +13,41 @@ export function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+    setError(false);
+
+    const payload = {
+      access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      subject: `Portfolio enquiry from ${formData.name}`,
+    };
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setSubmitted(false), 6000);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
-      setFormData({ name: "", email: "", message: "" });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -52,7 +73,13 @@ export function Contact() {
           <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-slate-100">
             {submitted && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
-                Thank you for your message! I'll get back to you soon.
+                ✅ Thank you for your message! Anna will get back to you soon.
+              </div>
+            )}
+
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+                ❌ Something went wrong. Please try again or reach out directly via LinkedIn.
               </div>
             )}
 
@@ -124,10 +151,13 @@ export function Contact() {
 
             <div className="mt-8 pt-8 border-t border-slate-200">
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <div className="flex items-center gap-2 text-slate-600">
+                <a 
+                  href="mailto:annapickup@live.co.uk"
+                  className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
+                >
                   <Mail className="w-5 h-5" />
-                  <span>anna.pickup@example.com</span>
-                </div>
+                  <span>annapickup@live.co.uk</span>
+                </a>
                 <div className="hidden sm:block w-px h-6 bg-slate-300" />
                 <a 
                   href="https://www.linkedin.com/in/anna-pickup-02b0a725a/" 
