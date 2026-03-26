@@ -1,5 +1,6 @@
 import { ArrowRight, Mail } from "lucide-react";
 import { Button } from "./ui/button";
+import annaImage from "../../assets/anna.png";
 
 export function Hero() {
   const scrollToSection = (id: string) => {
@@ -53,7 +54,7 @@ export function Hero() {
         <div className="relative lg:order-last">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4] max-w-md mx-auto">
             <img
-              src="/anna.png"
+              src={annaImage}
               alt="Anna Pickup"
               className="w-full h-full object-cover"
             />
