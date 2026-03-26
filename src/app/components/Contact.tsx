@@ -130,7 +130,7 @@ export function Contact() {
                 </div>
                 <div className="hidden sm:block w-px h-6 bg-slate-300" />
                 <a 
-                  href="https://linkedin.com/in/annapickup" 
+                  href="https://www.linkedin.com/in/anna-pickup-02b0a725a/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
